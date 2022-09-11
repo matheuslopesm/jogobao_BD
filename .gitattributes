@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 *.sql linguist-detectable=true
+=======
+*.sql linguist-detectable = true
+>>>>>>> 777ebf1c8282a7bb34f16921cefc85430cd8935a
