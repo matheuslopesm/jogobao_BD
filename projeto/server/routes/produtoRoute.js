@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const produtosService = require('../service/produtoService.js')
 
-// O get serve pra obtenção de um recurso da API
+//O get serve pra obtenção de um recurso da API
 
 //Pega todos os produtos
 router.get('/produtos', async function(req, res) {
@@ -10,21 +10,33 @@ router.get('/produtos', async function(req, res) {
     res.json(produtos)
 }); 
 
-// //Pega só um produto pelo seu numeroserie
-// router.get('/produtos/:numeroserie', async function(req, res) {
-// }); 
+//Cria um produto
+router.post('/produtos', async function(req, res) {
+    const produto = req.body
+    try {
+        const newProduto = await produtosService.saveProduto(produto)
+        res.status(201).json(newProduto)     
+    } catch (e) {
+        res.status(409).send(e.message)        
+    }
+}); 
 
-// //Cria um produto
-// router.post('/produtos', async function(req, res) {
-// }); 
+// Atualiza um produto
+router.put('/produtos/:numeroserie', async function(req, res) {
+    const produto = req.body
+    try {
+        await produtosService.updateProduto(req.params.numeroserie, produto)
+        res.status(204).end()   
+    } catch (e) {
+        res.status(404).send(e.message)
+    }
+}); 
 
-// //Faz uma alteração do produto
-// router.put('/produtos/:numeroserie', async function(req, res) {
-// }); 
-
-// //Deleta um produto
-// router.delete('/produtos/:numeroserie', async function(req, res) {
-// }); 
+//Deleta um produto
+router.delete('/produtos/:numeroserie', async function(req, res) {
+    await produtosService.deleteProduto(req.params.numeroserie)
+    res.status(204).end()
+}); 
 
 // Distribui as rotas em arquivos diferentes
 module.exports = router;
