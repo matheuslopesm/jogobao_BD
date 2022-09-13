@@ -7,16 +7,9 @@ exports.getProdutos = function(){
 }
 
 exports.saveProduto = function(produto) {
-    return database.one('INSERT INTO produto (pnome, descricao) values ($1, $2) returning*',
-    [   
-        produto.pnome,
-        produto.descricao
-    ]);
+    return database.one('INSERT INTO produto (pnome, descricao) values ($1, $2) returning*', [produto.pnome, produto.descricao]);
 }
 
-exports.deleteProduto = function (numeroSerie) {
-    return database.none('DELETE FROM produto WHERE numeroSerie = $1',
-    [
-        produto.numeroSerie
-    ])
+exports.deleteProduto = function (numeroserie) {
+    return database.none('DELETE FROM produto WHERE numeroserie = $1', [numeroserie])
 }

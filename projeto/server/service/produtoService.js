@@ -1,4 +1,4 @@
-// Aqui é onde estão as camadas de negócio
+// Aqui é onde estão as os papéis de negócio
 const produtosData = require('../data/produtoData.js')
 
 exports.getProdutos = function () {
@@ -9,7 +9,6 @@ exports.saveProduto = function(produto) {
     return produtosData.saveProduto(produto)
 }
 
-exports.deleteProduto = function(numeroSerie) {
-    return produtosData.deleteProduto(numeroSerie)
+exports.deleteProduto = function(numeroserie) {
+    return produtosData.deleteProduto(numeroserie)
 }
-

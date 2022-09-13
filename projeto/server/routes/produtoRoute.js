@@ -10,8 +10,8 @@ router.get('/produtos', async function(req, res) {
     res.json(produtos)
 }); 
 
-// //Pega só um produto pelo seu numeroSerie
-// router.get('/produtos/:numeroSerie', async function(req, res) {
+// //Pega só um produto pelo seu numeroserie
+// router.get('/produtos/:numeroserie', async function(req, res) {
 // }); 
 
 // //Cria um produto
@@ -19,12 +19,13 @@ router.get('/produtos', async function(req, res) {
 // }); 
 
 // //Faz uma alteração do produto
-// router.put('/produtos/:numeroSerie', async function(req, res) {
+// router.put('/produtos/:numeroserie', async function(req, res) {
 // }); 
 
 // //Deleta um produto
-// router.delete('/produtos/:numeroSerie', async function(req, res) {
+// router.delete('/produtos/:numeroserie', async function(req, res) {
 // }); 
 
 // Distribui as rotas em arquivos diferentes
 module.exports = router;
+

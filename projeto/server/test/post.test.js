@@ -1,31 +1,36 @@
-const crypto = require('crypto')
 const axios = require('axios')
-const produtoService = require('../service/produtoService.js')
-const { hasUncaughtExceptionCaptureCallback } = require('process')
+const produtosService = require('../service/produtoService.js')
+const crypto = require('crypto');
 
-const generate = function() {
-    return crypto.randomBytes(20).toString('hex')
-}
+const generate = function () {
+	return crypto.randomBytes(5).toString('hex');
+};
+
+const request = function (url, method, data) {
+	return axios({ url, method, data });
+};
 
 test('Should get produtos', async function() {
+    const produto1 = await produtosService.saveProduto({ pnome: generate(), descricao: generate() })
+    const produto2 = await produtosService.saveProduto({ pnome: generate(), descricao: generate() })
+    const produto3 = await produtosService.saveProduto({ pnome: generate(), descricao: generate() })
 
-    // Given - dado que
-    const produto1 = await produtoService.saveProduto({ pnome: "jajajaj", descricao: "uhuhhu" })
-    const produto2 = await produtoService.saveProduto({ pnome: "dassada", descricao: "aaabbb" })
-    const produto3 = await produtoService.saveProduto({ pnome: "jkjasas", descricao: "aaaabb" })
-
-    // When - quando acontecer
-    const response = await axios({
-        url: 'http://localhost:3000/produtos',
-        method: 'get'
-    })
-
+    const response = await request('http://localhost:3000/produtos', 'get')
     const produtos = response.data
-    // Then - então
+
     expect(produtos).toHaveLength(3)
 
-    await produtoService.deleteProduto(produto1.numeroSerie)
-    await produtoService.deleteProduto(produto2.numeroSerie)
-    await produtoService.deleteProduto(produto3.numeroSerie)
-    
+    await produtosService.deleteProduto(produto1.numeroserie)
+    await produtosService.deleteProduto(produto2.numeroserie)
+    await produtosService.deleteProduto(produto3.numeroserie)
+}) 
+
+test.only('Should save produtos', async function() {
+    const data = { pnome: generate(5), descricao: generate() }
+    const response = await request( 'http://localhost:3000/produtos', 'post', data)
+    const produto = response.data
+
+    expect(produto.pnome).toBe(data.pnome);
+	expect(produto.descricao).toBe(data.descricao);
+	await produtosService.deleteProduto(produto.numeroserie);
 }) 
