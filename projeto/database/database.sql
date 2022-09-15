@@ -16,3 +16,11 @@ CREATE TABLE funcionario(
     sobrenome VARCHAR(15),
     datanascimento DATE
 );
+
+-- Cria tabela Cliente
+CREATE TABLE cliente(
+    id SERIAL NOT NULL PRIMARY KEY,
+    cnome VARCHAR(15),
+    sobrenome VARCHAR(15),
+    datanascimento DATE
+);
