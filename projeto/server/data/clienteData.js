@@ -1,4 +1,4 @@
-// Conecta nossa aplicação à tabela "Produto" do banco de dados
+// Conecta nossa aplicação à tabela "Cliente" do banco de dados
 
 const database = require('../infra/database.js')
 
