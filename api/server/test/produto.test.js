@@ -75,7 +75,7 @@ test('Should not update a produto', async function() {
     }
 
     const response = await request( `http://localhost:3000/produtos/${produto.numeroserie}`, 'put', produto)
-    expect(response.status).toBe(500)
+    expect(response.status).toBe(404)
 }) 
 
 
