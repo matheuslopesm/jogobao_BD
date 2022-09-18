@@ -15,11 +15,11 @@ exports.getClienteByCNome = function(cnome){
 }
 
 exports.saveCliente = function(cliente) {
-    return database.one('INSERT INTO cliente (cnome, sobrenome) values ($1, $2) returning*', [cliente.cnome, cliente.sobrenome]);
+    return database.one('INSERT INTO cliente (cnome, sobrenome, datanascimento) values ($1, $2, $3) returning*', [cliente.cnome, cliente.sobrenome, cliente.datanascimento]);
 }
 
 exports.updateCliente = function (id, cliente) {
-    return database.none('UPDATE cliente SET cnome = $1, sobrenome = $2 WHERE id = $3', [cliente.cnome, cliente.sobrenome, id])
+    return database.none('UPDATE cliente SET cnome = $1, sobrenome = $2, datanascimento = $3 WHERE id = $4', [cliente.cnome, cliente.sobrenome, cliente.datanascimento, id])
 }
 
 exports.deleteCliente = function (id) {

@@ -19,12 +19,12 @@ exports.getProdutoByPNome = function(pnome){
 
 // Insere valores aos respectivos dados na tabela
 exports.saveProduto = function(produto) {
-    return database.one('INSERT INTO produto (pnome, descricao) values ($1, $2) returning*', [produto.pnome, produto.descricao]);
+    return database.one('INSERT INTO produto (pnome, valor, empresa, descricao) values ($1, $2, $3, $4) RETURNING*', [produto.pnome, produto.valor, produto.empresa, produto.descricao]);
 }
 
 // Atualiza o valor de um produto na tabela
 exports.updateProduto = function (numeroserie, produto) {
-    return database.none('UPDATE produto SET pnome = $1, descricao = $2 WHERE numeroserie = $3', [produto.pnome, produto.descricao, numeroserie])
+    return database.none('UPDATE produto SET pnome = $1, valor = $2, empresa = $3, descricao = $4 WHERE numeroserie = $5', [produto.pnome, produto.valor, produto.empresa, produto.descricao, numeroserie])
 }
 
 // Deleta um produto na tabela

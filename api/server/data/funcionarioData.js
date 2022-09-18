@@ -15,11 +15,11 @@ exports.getFuncionarioByFNome = function(fnome){
 }
 
 exports.saveFuncionario = function(funcionario) {
-    return database.one('INSERT INTO funcionario (fnome, datanascimento) values ($1, $2) returning*', [funcionario.fnome, funcionario.datanascimento]);
+    return database.one('INSERT INTO funcionario (fnome, sobrenome, datanascimento) values ($1, $2, $3) returning*', [funcionario.fnome, funcionario.sobrenome, funcionario.datanascimento]);
 }
 
 exports.updateFuncionario = function (id, funcionario) {
-    return database.none('UPDATE funcionario SET fnome = $1, datanascimento = $2 WHERE id = $3', [funcionario.fnome, funcionario.datanascimento, id])
+    return database.none('UPDATE funcionario SET fnome = $1, sobrenome = $2, datanascimento = $3 WHERE id = $4', [funcionario.fnome, funcionario.sobrenome,funcionario.datanascimento, id])
 }
 
 exports.deleteFuncionario = function (id) {

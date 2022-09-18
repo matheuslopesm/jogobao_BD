@@ -18,12 +18,12 @@ app.use('/', contemRoute)
 
 app.use(function(error, req, res, next){
     if(error.message === 'Produto already exists' || error.message === 'Funcionario already exists' || error.message === 'Cliente already exists' || error.message === 'Venda already exists' || error.message === 'Contem already exists'){
-        return res.status(409).send(e.message)        
+        return res.status(409).send(error.message)        
     }
     if(error.message === 'Produto not found' || error.message === 'Funcionario not found' || error.message === 'Cliente not found' || error.message === 'Venda not found' || error.message === 'Contem not found'){
-        return res.status(404).send(e.message)
+        return res.status(404).send(error.message)
     }
-    res.status(500).send(e.message)
+    res.status(500).send(error.message)
 })
 
 app.listen(3000)
