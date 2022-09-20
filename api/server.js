@@ -1,7 +1,9 @@
 // Cria uma aplicação express através da função express() na porta 3000.
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json())
 
 const produtoRoute = require('./server/routes/produtoRoute')
