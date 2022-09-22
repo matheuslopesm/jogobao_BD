@@ -6,6 +6,7 @@ const descriptionInput = document.getElementById("description");
 const btn = document.querySelector("#submitBtn");
 
 btn.addEventListener("click", (e) => {
+    e.preventDefault()
 
     axios.post("http://localhost:3000/produtos", {
         pnome: pnomeInput.value,
@@ -24,17 +25,20 @@ function createProdutoOnRow(response){
 
     for(let produto of produtos) {
         const row = document.createElement('tr');
+        const numeroserie = document.createElement('th');
         const pnome = document.createElement('td');
         const valor = document.createElement('td');
         const empresa = document.createElement('td');
         const descricao = document.createElement('td');
         const editButtons = document.createElement('td');
 
+        numeroserie.textContent = produto.numeroserie;
         pnome.textContent = produto.pnome;
         valor.textContent = produto.valor;
         empresa.textContent = produto.empresa;
         descricao.textContent = produto.descricao;
 
+        row.appendChild(numeroserie);
         row.appendChild(pnome);
         row.appendChild(valor);
         row.appendChild(empresa);
@@ -45,7 +49,6 @@ function createProdutoOnRow(response){
         <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
         <td><a href="#" class="btn btn-info btn-sm edit">Editar</a></td>
         `
-        
         list.appendChild(row);
     }
 }
@@ -53,6 +56,5 @@ function createProdutoOnRow(response){
 axios
     .get("http://localhost:3000/produtos")
     .then(createProdutoOnRow)
-
-
+;
 
