@@ -3,25 +3,25 @@ CREATE DATABASE jogobao_db;
 -- Cria tabela Produto
 CREATE TABLE produto(
     numeroserie SERIAL NOT NULL PRIMARY KEY,
-    pnome VARCHAR(15),
-    valor INT,
-    empresa VARCHAR(15),
+    pnome VARCHAR(100),
+    valor MONEY,
+    empresa VARCHAR(50),
     descricao TEXT
 );
 
 -- Cria tabela Funcionário
 CREATE TABLE funcionario(
     id SERIAL NOT NULL PRIMARY KEY,
-    fnome VARCHAR(15),
-    sobrenome VARCHAR(15),
+    fnome VARCHAR(50),
+    sobrenome VARCHAR(50),
     datanascimento DATE
 );
 
 -- Cria tabela Cliente
 CREATE TABLE cliente(
     id SERIAL NOT NULL PRIMARY KEY,
-    cnome VARCHAR(15),
-    sobrenome VARCHAR(15),
+    cnome VARCHAR(50),
+    sobrenome VARCHAR(50),
     datanascimento DATE
 );
 
@@ -29,7 +29,7 @@ CREATE TABLE cliente(
 CREATE TABLE venda(
     cod SERIAL NOT NULL PRIMARY KEY,
     datavenda DATE,
-    total INT,
+    total MONEY,
     funcionarioid SERIAL NOT NULL,
     clienteid SERIAL NOT NULL,
     FOREIGN KEY (funcionarioid) REFERENCES funcionario (id),

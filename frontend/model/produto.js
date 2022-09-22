@@ -1,12 +1,11 @@
-const pnomeInput = document.getElementById("primaryName")
-const valueInput = document.getElementById("value")
-const companyInput = document.getElementById("company")
-const descriptionInput = document.getElementById("description")
+const pnomeInput = document.getElementById("primaryName");
+const valueInput = document.getElementById("value");
+const companyInput = document.getElementById("company");
+const descriptionInput = document.getElementById("description");
 
-const btn = document.querySelector("#submitBtn")
+const btn = document.querySelector("#submitBtn");
 
 btn.addEventListener("click", (e) => {
-    e.preventDefault()
 
     axios.post("http://localhost:3000/produtos", {
         pnome: pnomeInput.value,
@@ -15,37 +14,45 @@ btn.addEventListener("click", (e) => {
         descricao: descriptionInput.value
     })
     .then((response) => {
-        console.log(response.data)
+        console.log(response.data);  
     });
-
-    createProdutoOnRow() 
 })
 
-function createProdutoOnRow(){
+function createProdutoOnRow(response){
     const list = document.querySelector('#product-list');
-    const row = document.createElement('tr');
-        
-    row.innerHTML = `
-        <td>${pnomeInput.value}</td>
-        <td>${valueInput.value}</td>
-        <td>${companyInput.value}</td>
-        <td>${descriptionInput.value}</td>
+    let produtos = response.data;   
+
+    for(let produto of produtos) {
+        const row = document.createElement('tr');
+        const pnome = document.createElement('td');
+        const valor = document.createElement('td');
+        const empresa = document.createElement('td');
+        const descricao = document.createElement('td');
+        const editButtons = document.createElement('td');
+
+        pnome.textContent = produto.pnome;
+        valor.textContent = produto.valor;
+        empresa.textContent = produto.empresa;
+        descricao.textContent = produto.descricao;
+
+        row.appendChild(pnome);
+        row.appendChild(valor);
+        row.appendChild(empresa);
+        row.appendChild(descricao);
+        row.appendChild(editButtons)
+
+        editButtons.innerHTML = `
         <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
         <td><a href="#" class="btn btn-info btn-sm edit">Editar</a></td>
         `
-    
-    list.appendChild(row) 
+        
+        list.appendChild(row);
+    }
 }
 
-async function showProdutos(){
-    let response = await axios.get("http://localhost:3000/produtos");
-    let data = response.data;
+axios
+    .get("http://localhost:3000/produtos")
+    .then(createProdutoOnRow)
 
-    data.forEach(() => { 
-        createProdutoOnRow()
-    })
-}
-
-showProdutos()
 
 
