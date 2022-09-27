@@ -6,9 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
 
-    <!-- Axios -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://bootswatch.com/5/yeti/bootstrap.min.css">
@@ -65,9 +64,7 @@
                 </thead>
                 <tbody id="product-list"></tbody>
             </table>
-
         </main>
-
     </div>
 
     <!-- Modal para edição de formulário -->
@@ -95,7 +92,7 @@
 
                         <div class="form-group">
                             <label for="value_modal">Valor</label>
-                            <input type="number" id="value_modal" class="form-control" required>
+                            <input type="text" id="value_modal" class="form-control" required>
                         </div>
 
                         <div class="form-group">
@@ -109,7 +106,7 @@
                         </div>
                     
                         <div class="d-grid mt-3">
-                            <input type="submit" value="Salvar Produto" class="btn btn-primary">
+                            <input type="submit" value="Salvar Produto" id="submitModal" class="btn btn-primary">
                         </div>
 
                     </form>
@@ -119,9 +116,12 @@
         </div>
     </div>
 
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- Javascript principal -->
-    <script type="module" src="../model/produto.js"></script>
-    
+    <script src="../model/produto.js"></script>
+
     <!-- Javascript para fechar o Modal -->
     <script>
         function closeModal() {
