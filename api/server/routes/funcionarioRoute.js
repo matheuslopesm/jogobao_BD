@@ -26,10 +26,10 @@ router.post('/funcionarios', async function(req, res, next) {
 });
 
 // Atualiza um funcionario
-router.put('/funcionarios/:id', async function(req, res, next) {
+router.put('/funcionarios/:idf', async function(req, res, next) {
     const funcionario = req.body
     try {
-        await funcionariosService.updateFuncionario(req.params.id, funcionario)
+        await funcionariosService.updateFuncionario(req.params.idf, funcionario)
         res.status(204).end()   
     } catch (e) {
         next(e)
@@ -37,9 +37,9 @@ router.put('/funcionarios/:id', async function(req, res, next) {
 }); 
 
 //Deleta um funcionario
-router.delete('/funcionarios/:id', async function(req, res, next) {
+router.delete('/funcionarios/:idf', async function(req, res, next) {
     try {
-        await funcionariosService.deleteFuncionario(req.params.id)
+        await funcionariosService.deleteFuncionario(req.params.idf)
         res.status(204).end()
     } catch (e) {
         next(e)

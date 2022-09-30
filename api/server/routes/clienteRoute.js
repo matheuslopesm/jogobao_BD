@@ -26,10 +26,10 @@ router.post('/clientes', async function(req, res, next) {
 }); 
 
 // Atualiza um cliente
-router.put('/clientes/:id', async function(req, res, next) {
+router.put('/clientes/:idc', async function(req, res, next) {
     const cliente = req.body
     try {
-        await clientesService.updateCliente(req.params.id, cliente)
+        await clientesService.updateCliente(req.params.idc, cliente)
         res.status(204).end()   
     } catch (e) {
         next(e)
@@ -37,9 +37,9 @@ router.put('/clientes/:id', async function(req, res, next) {
 }); 
 
 //Deleta um cliente
-router.delete('/clientes/:id', async function(req, res, next) {
+router.delete('/clientes/:idc', async function(req, res, next) {
     try {
-        await clientesService.deleteCliente(req.params.id)
+        await clientesService.deleteCliente(req.params.idc)
         res.status(204).end()
     } catch (e) {
         next(e)

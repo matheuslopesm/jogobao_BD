@@ -11,29 +11,28 @@ CREATE TABLE produto(
 
 -- Cria tabela Funcionário
 CREATE TABLE funcionario(
-    id SERIAL NOT NULL PRIMARY KEY,
+    idf SERIAL NOT NULL PRIMARY KEY,
     fnome VARCHAR(50),
     sobrenome VARCHAR(50),
-    datanascimento DATE
+    datanascimento VARCHAR(10)
 );
 
 -- Cria tabela Cliente
 CREATE TABLE cliente(
-    id SERIAL NOT NULL PRIMARY KEY,
+    idc SERIAL NOT NULL PRIMARY KEY,
     cnome VARCHAR(50),
     sobrenome VARCHAR(50),
-    datanascimento DATE
+    datanascimento VARCHAR(10)
 );
 
 -- Cria tabela Venda 
 CREATE TABLE venda(
     cod SERIAL NOT NULL PRIMARY KEY,
-    datavenda DATE,
-    total MONEY,
+    datavenda VARCHAR(10),
     funcionarioid SERIAL NOT NULL,
     clienteid SERIAL NOT NULL,
-    FOREIGN KEY (funcionarioid) REFERENCES funcionario (id),
-    FOREIGN KEY (clienteid) REFERENCES cliente (id)
+    FOREIGN KEY (funcionarioid) REFERENCES funcionario (idf),
+    FOREIGN KEY (clienteid) REFERENCES cliente (idc)
 );
 
 -- Cria tabela Contem

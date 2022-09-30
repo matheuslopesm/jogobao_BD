@@ -5,8 +5,8 @@ exports.getFuncionarios = function () {
     return funcionariosData.getFuncionarios()
 }
 
-exports.getFuncionario = async function (id) {
-    const funcionario = await funcionariosData.getFuncionario(id)
+exports.getFuncionario = async function (idf) {
+    const funcionario = await funcionariosData.getFuncionario(idf)
     if(!funcionario) throw new Error('Funcionario not found')
     return funcionario
 }
@@ -17,11 +17,11 @@ exports.saveFuncionario = async function(funcionario) {
     return funcionariosData.saveFuncionario(funcionario)
 }
 
-exports.deleteFuncionario = function(id) {
-    return funcionariosData.deleteFuncionario(id)
+exports.deleteFuncionario = function(idf) {
+    return funcionariosData.deleteFuncionario(idf)
 }
 
-exports.updateFuncionario = async function(id, funcionario){
-    await exports.getFuncionario(id)
-    return funcionariosData.updateFuncionario(id, funcionario)
+exports.updateFuncionario = async function(idf, funcionario){
+    await exports.getFuncionario(idf)
+    return funcionariosData.updateFuncionario(idf, funcionario)
 }

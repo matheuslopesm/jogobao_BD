@@ -23,9 +23,9 @@ test('Should get funcionarios', async function() {
 
     expect(funcionarios).toHaveLength(3)
 
-    await funcionariosService.deleteFuncionario(funcionario1.id)
-    await funcionariosService.deleteFuncionario(funcionario2.id)
-    await funcionariosService.deleteFuncionario(funcionario3.id)
+    await funcionariosService.deleteFuncionario(funcionario1.idf)
+    await funcionariosService.deleteFuncionario(funcionario2.idf)
+    await funcionariosService.deleteFuncionario(funcionario3.idf)
 }) 
 
 // Cria os funcionarios
@@ -38,7 +38,7 @@ test('Should save funcionarios', async function() {
 
     expect(funcionario.fnome).toBe(data.fnome);
 	expect(funcionario.datanascimento).toBe(data.datanascimento);
-	await funcionariosService.deleteFuncionario(funcionario.id);
+	await funcionariosService.deleteFuncionario(funcionario.idf);
 }) 
 
 // Não deixa salvar 2 funcionarios com o mesmo nome
@@ -50,7 +50,7 @@ test('Should not save a funcionario', async function() {
     
     const funcionario = response1.data
 
-    await funcionariosService.deleteFuncionario(funcionario.id);
+    await funcionariosService.deleteFuncionario(funcionario.idf);
 }) 
 
 // Atualiza os funcionarios
@@ -59,22 +59,22 @@ test('Should update funcionarios', async function() {
     funcionario.fnome = generate(5)
     funcionario.datanascimento = '07-12-1999'
 
-    const response = await request( `http://localhost:3000/funcionarios/${funcionario.id}`, 'put', funcionario)
+    const response = await request( `http://localhost:3000/funcionarios/${funcionario.idf}`, 'put', funcionario)
     expect(response.status).toBe(204)
 
-    const updatedFuncionario = await funcionariosService.getFuncionario(funcionario.id)
+    const updatedFuncionario = await funcionariosService.getFuncionario(funcionario.idf)
     expect(updatedFuncionario.fnome).toBe(funcionario.fnome);
 	expect(updatedFuncionario.datanascimento).toBe(funcionario.datanascimento);
-	await funcionariosService.deleteFuncionario(funcionario.id);
+	await funcionariosService.deleteFuncionario(funcionario.idf);
 }) 
 
 // Não atualiza um funcionario que não existe
 test('Should not update a funcionario', async function() {
     const funcionario = {
-        id: 1
+        idf: 1
     }
 
-    const response = await request( `http://localhost:3000/funcionarios/${funcionario.id}`, 'put', funcionario)
+    const response = await request( `http://localhost:3000/funcionarios/${funcionario.idf}`, 'put', funcionario)
     expect(response.status).toBe(500)
 }) 
 
@@ -82,7 +82,7 @@ test('Should not update a funcionario', async function() {
 // Deleta os funcionarios
 test('Should delete a funcionario', async function() {
     const funcionario = await funcionariosService.saveFuncionario({ fnome: generate(5), datanascimento: '07-12-1999' }) 
-    const response = await request( `http://localhost:3000/funcionarios/${funcionario.id}`, 'delete')
+    const response = await request( `http://localhost:3000/funcionarios/${funcionario.idf}`, 'delete')
     expect(response.status).toBe(204)
 
     const funcionarios  = await funcionariosService.getFuncionarios()

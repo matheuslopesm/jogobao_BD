@@ -6,7 +6,7 @@ const descriptionInput = document.getElementById("description");
 const btn = document.querySelector("#submitBtn");
 
 btn.addEventListener("click", (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     axios.post("http://localhost:3000/produtos", {
         pnome: pnomeInput.value,
@@ -26,6 +26,7 @@ function createProdutoOnRow(response){
     produtos.forEach(function (produto, i) {
         console.log(`produto ${i}`, produto, i)
         const row = document.createElement('tr');
+        row.id = `rowId${produto.numeroserie}`;
 
         var numeroserie = document.createElement('th');
         const pnome = document.createElement('td');
@@ -46,97 +47,97 @@ function createProdutoOnRow(response){
         row.appendChild(empresa);
         row.appendChild(descricao);
         row.appendChild(edit);
-        // row.appendChild(editButtons);
 
-        // editButtons.innerHTML = `
-        // <td><a href="#" id="deleteBtn" class="btn btn-danger btn-sm delete">X</a></td>
-        // <td><a href="#" id="editBtn" class="btn btn-info btn-sm edit">Editar</a></td>
-        // `
-        
         var editBtn = document.createElement('a');
         editBtn.type = "button";
         editBtn.classList.add(`editButton${produto.numeroserie}`, "btn", "btn-info", "btn-sm", "edit");
         editBtn.textContent = "Editar";
 
-        editBtn.onclick = (function openModal() { 
-            document.querySelector(".modal").classList.add(`myModal${produto.numeroserie}`)
-            document.querySelector(`.myModal${produto.numeroserie}`).style.display = "block";
-            console.log(`modal [${produto.numeroserie}] abrindo`)
+        var deleteBtn = document.createElement('a');
+        deleteBtn.type = "button";
+        deleteBtn.classList.add(`deleteButton${produto.numeroserie}`, "btn", "btn-danger", "btn-sm", "delete");
+        deleteBtn.textContent = "Deletar";
 
-            var pnomeInputModal = document.getElementById("primaryName_modal");
-            var valueInputModal = document.getElementById("value_modal");
-            var companyInputModal = document.getElementById("company_modal");
-            var descriptionInputModal = document.getElementById("description_modal");
-
-            pnomeInputModal.value = produto.pnome;
-            valueInputModal.value = produto.valor;
-            companyInputModal.value = produto.empresa;
-            descriptionInputModal.value = produto.descricao;
-
-            // axios.put(`http://localhost:3000/produtos/${produto.numeroserie}`, {
-            //     pnome: pnomeInputModal.value,
-            //     valor: valueInputModal.value,
-            //     empresa: companyInputModal.value,
-            //     descricao: descriptionInputModal.value
-            // })
-        });
-
+        edit.appendChild(deleteBtn);
         edit.appendChild(editBtn);
         list.appendChild(row);
 
-        // function updateProdutoOnRow(){
+        deleteBtn.addEventListener("click", () => {
+            row.remove();
+            produtosState.splice(i, 1);
 
-        //     // var submitModal = document.querySelector(".modal");
+            axios.delete(`http://localhost:3000/produtos/${produto.numeroserie}`);
+        });
+        
+        editBtn.addEventListener("click", () => {
+            document.querySelector(".modal").classList.add(`myModal${produto.numeroserie}`);
+            document.querySelector(`.myModal${produto.numeroserie}`).style.display = "block";
+            console.log(`modal [${produto.numeroserie}] abrindo`);
 
-        //     // submitModal.addEventListener("click", updateWithModal);
+            console.log(produtosState);
+            openModal(produtosState.find((artefato) => {
+                return artefato.numeroserie === produto.numeroserie;
+            }));
+        });
+    });
 
-        //     // for (var j = 0 ; j < submitModal.length; j++) {
-        //     //     submitModal[i].addEventListener("click", updateWithModal)
-        //     // }
-        // }
+    function openModal(produto){ 
+        var pnomeInputModal = document.getElementById("primaryName_modal");
+        var valueInputModal = document.getElementById("value_modal");
+        var companyInputModal = document.getElementById("company_modal");
+        var descriptionInputModal = document.getElementById("description_modal");
 
-        // function updateWithModal(){
+        pnomeInputModal.value = produto.pnome;
+        valueInputModal.value = produto.valor;
+        companyInputModal.value = produto.empresa;
+        descriptionInputModal.value = produto.descricao;
 
-        //     var pnomeInputModal = document.getElementById("primaryName_modal");
-        //     var valueInputModal = document.getElementById("value_modal");
-        //     var companyInputModal = document.getElementById("company_modal");
-        //     var descriptionInputModal = document.getElementById("description_modal");
+        var submitModal = document.querySelector("#submitModal");
+        var produtoRow = document.getElementById(`rowId${produto.numeroserie}`)
 
-        //     axios.put(`http://localhost:3000/produtos/${produto.numeroserie}`, {
-        //         pnome: pnomeInputModal.value,
-        //         valor: valueInputModal.value,
-        //         empresa: companyInputModal.value,
-        //         descricao: descriptionInputModal.value
-        //     })
-        //     .then((response) => {
-        //         console.log(response.data);  
-        //     });
-        // }
-    })
+        submitModal.addEventListener("click", submitOpenedModal);
 
-    // produtos.forEach(function (produto, i) {
+        function submitOpenedModal(evento){
+            evento.preventDefault();
+            console.log(evento)
+            produtoRow.childNodes[1].innerHTML = pnomeInputModal.value;
+            produtoRow.childNodes[2].innerHTML = valueInputModal.value;
+            produtoRow.childNodes[3].innerHTML = companyInputModal.value;
+            produtoRow.childNodes[4].innerHTML = descriptionInputModal.value;
 
-    //     var updateBtn = document.getElementsByClassName("editBtn");
+            produtosState = produtosState.map((item) => {
+                if(item.numeroserie === produto.numeroserie){
+                    return { 
+                        pnome: pnomeInputModal.value,
+                        valor: valueInputModal.value,
+                        empresa: companyInputModal.value,
+                        descricao: descriptionInputModal.value 
+                    };
+                }else{
+                    return item;
+                }
+            });
 
-    //     updateBtn[0].addEventListener("click", (e) => {});
+            console.log(`submitando modal ${produto}`);
 
-    //     var updateModal = document.querySelector(".modal");
+            axios.put(`http://localhost:3000/produtos/${produto.numeroserie}`, {
+                pnome: pnomeInputModal.value,
+                valor: valueInputModal.value,
+                empresa: companyInputModal.value,
+                descricao: descriptionInputModal.value
+            });
 
-    //     for (var i = 0 ; i < updateBtn.length; i++) {
-    //         updateBtn[i].addEventListener("click" , (e) => {
-    //             updateModal.style.display = 'block'; 
-
-    //             document.querySelector("#primaryName_modal").value = produto.pnome;
-    //             document.querySelector("#value_modal").value = produto.valor;
-    //             document.querySelector("#company_modal").value = produto.empresa;
-    //             document.querySelector("#description_modal").value = produto.descricao;
-    //         }); 
-    //     } 
-    // })
+            document.querySelector(`.myModal${produto.numeroserie}`).style.display = "none";
+        }
+    };
 }
+
+var produtosState = [];
 
 axios
     .get("http://localhost:3000/produtos")
-    .then(createProdutoOnRow)
-;
+    .then((produtos) => {
+        createProdutoOnRow(produtos);
+        produtosState = produtos.data;        
+    });
 

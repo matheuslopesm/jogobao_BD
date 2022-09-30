@@ -5,8 +5,8 @@ exports.getClientes = function () {
     return clientesData.getClientes()
 }
 
-exports.getCliente = async function (id) {
-    const cliente = await clientesData.getCliente(id)
+exports.getCliente = async function (idc) {
+    const cliente = await clientesData.getCliente(idc)
     if(!cliente) throw new Error('Cliente not found')
     return cliente
 }
@@ -17,11 +17,11 @@ exports.saveCliente = async function(cliente) {
     return clientesData.saveCliente(cliente)
 }
 
-exports.deleteCliente = function(id) {
-    return clientesData.deleteCliente(id)
+exports.deleteCliente = function(idc) {
+    return clientesData.deleteCliente(idc)
 }
 
-exports.updateCliente = async function(id, cliente){
-    await exports.getCliente(id)
-    return clientesData.updateCliente(id, cliente)
+exports.updateCliente = async function(idc, cliente){
+    await exports.getCliente(idc)
+    return clientesData.updateCliente(idc, cliente)
 }

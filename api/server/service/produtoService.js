@@ -3,7 +3,7 @@ const produtosData = require('../data/produtoData.js')
 
 // Retorna TODOS produtos
 exports.getProdutos = function () {
-    return produtosData.getProdutos()
+    return produtosData.getProdutos();
 }
 
 // Retorna um Produto pelo seu numero de serie
