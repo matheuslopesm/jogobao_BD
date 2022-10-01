@@ -15,11 +15,11 @@ exports.getVendaByCod = function(cod){
 }
 
 exports.saveVenda = function(venda) {
-    return database.one('INSERT INTO venda (datavenda, total) values ($1, $2) returning*', [venda.datavenda, venda.total]);
+    return database.one('INSERT INTO venda (datavenda, clienteid, funcionarioid) values ($1) returning*', [venda.datavenda, venda.clienteid, venda.funcionarioid]);
 }
 
 exports.updateVenda = function (cod, venda) {
-    return database.none('UPDATE venda SET datavenda = $1, total = $2 WHERE cod = $3', [venda.datavenda, venda.total, cod])
+    return database.none('UPDATE venda SET datavenda = $1, clienteid = $2, funcionarioid = $3 WHERE cod = $2', [venda.datavenda, venda.clienteid, venda.funcionarioid, cod])
 }
 
 exports.deleteVenda = function (cod) {

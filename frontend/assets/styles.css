@@ -1,0 +1,139 @@
+/* ====== GERAL ====== */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    --primary-black: hsl(0, 0%, 0%);
+    
+    --nav-height: 6.5rem;
+}
+
+.wrapper-nav{
+    width: min(72rem, 100%);
+    margin-inline: auto;
+    padding-inline: 1.7rem;
+}
+
+img{
+    max-width: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* ====== NAVIGATION ====== */
+nav{
+    display: flex;
+    height: var(--nav-height);
+    top: 0;
+    width: 100vw;
+
+    background-color: var(--primary-black);
+}
+
+nav .wrapper-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav button{
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+nav .menu,
+nav.close-menu{
+    position: fixed;
+}
+
+nav .logo img{
+    width: 6rem;
+}
+
+/* ====== MENU-EXPANDED ====== */
+body.menu-expanded {
+    overflow: hidden;
+}
+
+body.menu-expanded > :not(nav){
+    visibility: visible;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+    opacity: 0;
+    visibility: hidden;
+}
+  
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+    opacity: 1;
+    visibility: visible;
+}
+  
+.menu {
+    transform: translateY(-100%);
+}
+ 
+body.menu-expanded .menu {
+    top: 0;
+    left: 0;
+    background: var(--primary-black);
+  
+    width: 100vw;
+    height: 23rem;
+    padding-top: 5rem;
+   
+    transition: transform 500ms;
+    transform: translateY(0);
+}
+  
+.menu ul:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    width: min(50rem, 100%);
+    margin-inline: auto;
+    padding-inline: 2.4rem;
+  
+    margin-top: 1rem;
+  
+    font-size: 1.7rem;
+    line-height: 3rem;
+}
+
+.menu ul li,
+.menu ul li a{
+    list-style: none;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.menu ul li a:hover{
+    color: rgb(179, 5, 5);
+}
+  
+body.menu-expanded .logo,
+body.menu-expanded button {
+    position: relative;
+    z-index: 100;
+}
+  
+body.menu-expanded button path {
+    stroke: #ffffff;
+}
