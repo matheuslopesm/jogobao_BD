@@ -131,10 +131,3 @@ axios
         vendasState = vendas.data;        
     });
 
-function openMenu(){
-    document.body.classList.add('menu-expanded')
-}
-          
-function closeMenu(){
-    document.body.classList.remove('menu-expanded')
-}
