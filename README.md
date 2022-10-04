@@ -2,7 +2,7 @@
 
 CRUD feito com Node.JS + PostgreSQL para o Trabalho Prático da disciplina de Banco de Dados I.
 
-Esse sistema foi pensado como pertencente à uma loja de jogos fictícia, denominada "JogoBão STORE".
+Esse sistema foi pensado como pertencente à uma loja de jogos fictícia, denominada "JogoBão GAMES".
 
 Todas as techs utilizadas foram:
 <div style="display: inline_block">

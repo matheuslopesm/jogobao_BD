@@ -1,5 +1,3 @@
-CREATE DATABASE jogobao_db;
-
 -- Cria tabela Produto
 CREATE TABLE produto(
     numeroserie SERIAL NOT NULL PRIMARY KEY,
@@ -41,10 +39,10 @@ CREATE TABLE contem(
     vendacod SERIAL NOT NULL,
 );
 
--- Seta 2 chaves primárias para a tabela Contem
+-- Cria 2 chaves primárias para a tabela Contem
 ALTER TABLE contem ADD PRIMARY KEY (prodnumeroserie, vendacod)
 
--- Seta 2 chaves estrangeiras na tabela Contem
+-- Cria 2 chaves estrangeiras na tabela Contem
 ALTER TABLE contem FOREIGN KEY (prodnumeroserie) REFERENCES produto (numeroserie);
 ALTER TABLE contem FOREIGN KEY (vendacod) REFERENCES venda (cod);
 
