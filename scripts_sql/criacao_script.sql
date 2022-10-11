@@ -29,8 +29,10 @@ CREATE TABLE venda(
     datavenda VARCHAR(10) NOT NULL,
     funcionarioid SERIAL NOT NULL,
     clienteid SERIAL NOT NULL,
+    produtonumeroserie SERIAL NOT NULL,
     FOREIGN KEY (funcionarioid) REFERENCES funcionario (idf),
-    FOREIGN KEY (clienteid) REFERENCES cliente (idc)
+    FOREIGN KEY (clienteid) REFERENCES cliente (idc),
+    FOREIGN KEY (produtonumeroserie) REFERENCES produto (numeroserie)
 );
 
 -- Cria tabela Contem

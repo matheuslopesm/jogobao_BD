@@ -29,10 +29,10 @@ VALUES
     ('Jailson', 'Melandes', '04/03/1985');
 
 -- Insere tuplas em Venda
-INSERT INTO venda (datavenda, clienteid, funcionarioid)
+INSERT INTO venda (datavenda, clienteid, funcionarioid, produtonumeroserie)
 VALUES
-    ('28/09/2022', '1', '2'),
-    ('12/08/2021', '2', '3'),
-    ('11/10/2022', '3', '4'),
-    ('05/05/2022', '4', '1'),
-    ('02/03/2021', '5', '5');
+    ('28/09/2022', '1', '3', '2'),
+    ('12/08/2021', '2', '3', '2'),
+    ('11/10/2022', '3', '4', '3'),
+    ('05/05/2022', '4', '1', '4'),
+    ('02/03/2021', '5', '5', '5');

@@ -1,6 +1,7 @@
 const datavendaInput = document.getElementById("datavenda");
 const clienteidInput = document.getElementById("clienteid");
 const funcionarioidInput = document.getElementById("funcionarioid");
+const produtonumeroserieInput = document.getElementById("produtonumeroserie");
 
 const btn = document.querySelector("#submitBtn");
 
@@ -10,7 +11,8 @@ btn.addEventListener("click", (e) => {
     axios.post("http://localhost:3000/vendas", {
         datavenda: datavendaInput.value,
         clienteid: clienteidInput.value,
-        funcionarioid: funcionarioidInput.value
+        funcionarioid: funcionarioidInput.value,
+        produtonumeroserie: produtonumeroserieInput.value
     })
     .then((response) => {
         console.log(response.data);  
@@ -30,17 +32,20 @@ function createVendaOnRow(response){
         const datavenda = document.createElement('td');
         const clienteid = document.createElement('td');
         const funcionarioid = document.createElement('td');
+        const produtonumeroserie = document.createElement('td');
         const edit = document.createElement('td');
 
         cod.textContent = venda.cod;
         datavenda.textContent = venda.datavenda;
         clienteid.textContent = venda.clienteid;
         funcionarioid.textContent = venda.funcionarioid;
+        produtonumeroserie.textContent = venda.produtonumeroserie;
 
         row.appendChild(cod);
         row.appendChild(datavenda);
         row.appendChild(clienteid);
         row.appendChild(funcionarioid);
+        row.appendChild(produtonumeroserie);
         row.appendChild(edit);
 
         var editBtn = document.createElement('a');
@@ -80,10 +85,12 @@ function createVendaOnRow(response){
         var datavendaInputModal = document.getElementById("datavenda_modal");
         var clienteidInputModal = document.getElementById("clienteid_modal");
         var funcionarioidInputModal = document.getElementById("funcionarioid_modal");
+        var produtonumeroserieInputModal = document.getElementById("produtonumeroserie_modal");
 
         datavendaInputModal.value = venda.datavenda;
-        clienteidInputModal.value = venda.datavenda;
-        funcionarioidInputModal.value = venda.datavenda;
+        clienteidInputModal.value = venda.clienteid;
+        funcionarioidInputModal.value = venda.funcionarioid;
+        produtonumeroserieInputModal.value = venda.produtonumeroserie;
 
         var submitModal = document.querySelector("#submitModal");
         var vendaRow = document.getElementById(`rowcod${venda.cod}`)
@@ -96,6 +103,7 @@ function createVendaOnRow(response){
             vendaRow.childNodes[1].innerHTML = datavendaInputModal.value;
             vendaRow.childNodes[2].innerHTML = clienteidInputModal.value;
             vendaRow.childNodes[3].innerHTML = funcionarioidInputModal.value;
+            vendaRow.childNodes[4].innerHTML = produtonumeroserieInputModal.value;
 
             vendasState = vendasState.map((sell) => {
                 if(sell.cod === venda.cod){
@@ -103,6 +111,7 @@ function createVendaOnRow(response){
                         datavenda: datavendaInputModal.value,
                         clienteid: clienteidInputModal.value,
                         funcionarioid: funcionarioidInputModal.value,
+                        produtonumeroserie: produtonumeroserieInputModal.value
                     };
                 }else{
                     return sell;
@@ -115,6 +124,7 @@ function createVendaOnRow(response){
                 datavenda: datavendaInputModal.value,
                 clienteid: clienteidInputModal.value,
                 funcionarioid: funcionarioidInputModal.value,
+                produtonumeroserie: produtonumeroserieInputModal.value
             });
 
             document.querySelector(`.myModal${venda.cod}`).style.display = "none";
