@@ -1,8 +1,8 @@
-# JogoBão Store - CRUD Node.JS + PostgreSQL
+# JogoBão Games - Node.JS + PostgreSQL
 
-CRUD feito com Node.JS + PostgreSQL para o Trabalho Prático da disciplina de Banco de Dados I.
+Sistema pensado e feito com Node.JS + PostgreSQL para o Trabalho Prático da disciplina de Banco de Dados I, com o objetivo de armazenar os dados de uma loja de jogos fictícia. O sistema armazena então os produtos, clientes, funcionários e vendas.
 
-Esse sistema foi pensado como pertencente à uma loja de jogos fictícia, denominada "JogoBão GAMES".
+A loja de jogos fictícia é denominada "JogoBão GAMES", e as operações feitas são: Create, Read, Update e Delete (CRUD).
 
 Todas as techs utilizadas foram:
 <div style="display: inline_block">

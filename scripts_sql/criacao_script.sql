@@ -1,8 +1,8 @@
 -- Cria tabela Produto
 CREATE TABLE produto(
     numeroserie SERIAL NOT NULL PRIMARY KEY,
-    pnome VARCHAR(100),
-    valor MONEY,
+    pnome VARCHAR(100) NOT NULL,
+    valor MONEY NOT NULL,
     empresa VARCHAR(50),
     descricao TEXT
 );
@@ -10,23 +10,23 @@ CREATE TABLE produto(
 -- Cria tabela Funcionário
 CREATE TABLE funcionario(
     idf SERIAL NOT NULL PRIMARY KEY,
-    fnome VARCHAR(50),
-    sobrenome VARCHAR(50),
+    fnome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(50) NOT NULL,
     datanascimento VARCHAR(10)
 );
 
 -- Cria tabela Cliente
 CREATE TABLE cliente(
     idc SERIAL NOT NULL PRIMARY KEY,
-    cnome VARCHAR(50),
-    sobrenome VARCHAR(50),
+    cnome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(50) NOT NULL,
     datanascimento VARCHAR(10)
 );
 
--- Cria tabela Venda 
+-- Cria tabela Venda com duas chaves estrangeiras para da Tabela Funcionario e Cliente
 CREATE TABLE venda(
     cod SERIAL NOT NULL PRIMARY KEY,
-    datavenda VARCHAR(10),
+    datavenda VARCHAR(10) NOT NULL,
     funcionarioid SERIAL NOT NULL,
     clienteid SERIAL NOT NULL,
     FOREIGN KEY (funcionarioid) REFERENCES funcionario (idf),
@@ -45,5 +45,3 @@ ALTER TABLE contem ADD PRIMARY KEY (prodnumeroserie, vendacod)
 -- Cria 2 chaves estrangeiras na tabela Contem
 ALTER TABLE contem FOREIGN KEY (prodnumeroserie) REFERENCES produto (numeroserie);
 ALTER TABLE contem FOREIGN KEY (vendacod) REFERENCES venda (cod);
-
-

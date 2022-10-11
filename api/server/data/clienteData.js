@@ -3,7 +3,7 @@
 const database = require('../infra/database.js')
 
 exports.getClientes = function(){
-    return database.query('SELECT* FROM cliente')
+    return database.query('SELECT* FROM cliente ORDER BY idc')
 }
 
 exports.getCliente = function(idc){

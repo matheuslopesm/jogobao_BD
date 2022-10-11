@@ -3,7 +3,7 @@
 const database = require('../infra/database.js')
 
 exports.getVendas = function(){
-    return database.query('SELECT* FROM venda')
+    return database.query('SELECT* FROM venda ORDER BY cod')
 }
 
 exports.getVenda = function(cod){
@@ -15,7 +15,7 @@ exports.getVendaByCod = function(cod){
 }
 
 exports.saveVenda = function(venda) {
-    return database.one('INSERT INTO venda (datavenda, clienteid, funcionarioid) values ($1) returning*', [venda.datavenda, venda.clienteid, venda.funcionarioid]);
+    return database.one('INSERT INTO venda (datavenda, clienteid, funcionarioid) values ($1, $2, $3) returning*', [venda.datavenda, venda.clienteid, venda.funcionarioid]);
 }
 
 exports.updateVenda = function (cod, venda) {
