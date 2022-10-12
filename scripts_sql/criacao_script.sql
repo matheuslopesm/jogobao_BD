@@ -23,7 +23,7 @@ CREATE TABLE cliente(
     datanascimento VARCHAR(10)
 );
 
--- Cria tabela Venda com duas chaves estrangeiras para da Tabela Funcionario e Cliente
+-- Cria tabela Venda com três chaves estrangeiras para da Tabela Funcionario e Cliente
 CREATE TABLE venda(
     cod SERIAL NOT NULL PRIMARY KEY,
     datavenda VARCHAR(10) NOT NULL,
