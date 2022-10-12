@@ -34,16 +34,3 @@ CREATE TABLE venda(
     FOREIGN KEY (clienteid) REFERENCES cliente (idc),
     FOREIGN KEY (produtonumeroserie) REFERENCES produto (numeroserie)
 );
-
--- Cria tabela Contem
-CREATE TABLE contem(
-    prodnumeroserie SERIAL NOT NULL,
-    vendacod SERIAL NOT NULL,
-);
-
--- Cria 2 chaves primárias para a tabela Contem
-ALTER TABLE contem ADD PRIMARY KEY (prodnumeroserie, vendacod)
-
--- Cria 2 chaves estrangeiras na tabela Contem
-ALTER TABLE contem FOREIGN KEY (prodnumeroserie) REFERENCES produto (numeroserie);
-ALTER TABLE contem FOREIGN KEY (vendacod) REFERENCES venda (cod);
