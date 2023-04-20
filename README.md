@@ -1,10 +1,16 @@
-# JogoBão Games - Node.JS + PostgreSQL
+# JogoBão Games - NodeJS + PostgreSQL
 
-Sistema pensado e feito com Node.JS + PostgreSQL para o Trabalho Prático da disciplina de Banco de Dados I, com o objetivo de armazenar os dados de uma loja de jogos fictícia. O sistema armazena então os produtos, clientes, funcionários e vendas.
+Sistema feito com NodeJS + PostgreSQL para o Trabalho Prático da disciplina de Banco de Dados I, com o objetivo de armazenar os dados de uma loja de jogos fictícia. O sistema armazena os produtos, clientes, funcionários e vendas.
 
-A loja de jogos fictícia é denominada "JogoBão GAMES", e as operações feitas são: Create, Read, Update e Delete (CRUD).
+Toda a estrutura da API foi feita do zero, utilizando conceitos de Banco de Dados Relacional.
 
-Todas as techs utilizadas foram:
+<a href="https://drive.google.com/file/d/12dm59S0qnCxC2734O01JtAL4EsW9Xhv8/view?usp=share_link" style="font-size: 16px">Modelo Entidade-Relacionamento</a>
+<br>
+<a href="https://drive.google.com/file/d/14y5OiYNiZ48M6UQOm57KpvgWam4ilD79/view?usp=share_link" style="font-size: 16px">Mapeamento Conceitual-Lógico do Sistema</a>
+
+A loja de jogos fictícia é denominada "JogoBão GAMES", e as operações da API são: Create, Read, Update e Delete (CRUD).
+
+Todas as tecnologias utilizadas foram:
 <div style="display: inline_block">
     <h3>Web Development:</h3>
     <img align="center" alt="Mat-HTML" height="30" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white">
