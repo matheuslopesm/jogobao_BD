@@ -1,8 +1,8 @@
 # JogoBão Games - NodeJS + PostgreSQL
 
-Sistema feito com NodeJS + PostgreSQL para o Trabalho Prático da disciplina de Banco de Dados I, com o objetivo de armazenar os dados de uma loja de jogos fictícia. O sistema armazena os produtos, clientes, funcionários e vendas.
+Sistema feito com NodeJS + PostgreSQL para o Trabalho Prático da disciplina de Banco de Dados I, com o objetivo de gestão de uma loja de jogos fictícia. O sistema armazena os produtos, clientes, funcionários e vendas.
 
-Toda a estrutura da API foi feita do zero, utilizando conceitos de Banco de Dados Relacional.
+Toda a estrutura da API foi feita do zero usando JavaScript e Jest, utilizando conceitos de Banco de Dados Relacional.
 
 <a href="https://drive.google.com/file/d/12dm59S0qnCxC2734O01JtAL4EsW9Xhv8/view?usp=share_link" style="font-size: 16px">Modelo Entidade-Relacionamento</a>
 <br>
